@@ -31,7 +31,7 @@ static void lambda_01_modern()
     std::for_each(
         vec.begin(),
         vec.end(),
-        [](int n) {
+        [](int n) {  // inline
             std::print("{} ", n);
         }
     );
@@ -83,12 +83,17 @@ static void lambda_02_01()
 
     std::string header{ ">>> " };
 
+    auto lambda = [&header](int n) -> void {
+        std::println("{}{} ", header, n);
+        };
+
     std::for_each(
         vec.begin(),
         vec.end(),
-        [&header](int n) {
-            std::println("{}{} ", header, n);
-        }
+        lambda
+        //[&header](int n) -> void {
+        //    std::println("{}{} ", header, n);
+        //}
     );
 }
 
@@ -97,10 +102,10 @@ static void lambda_02_02()
     int n{ 1 };
     int m{ 2 };
 
-    auto l1{ [=] { std::println("Copy:      {} {}", n, m); } };
-    auto l2{ [&] { std::println("Reference: {} {}", n, m); } };
-    auto l3{ [&, m] { std::println("Both:      {} {}", n, m); } };
-    auto l4{ [=, &m] { std::println("More both: {} {}", n, m); } };
+    auto l1{ [=] () { std::println("Copy:      {} {}", n, m); } };
+    auto l2{ [&]() { std::println("Reference: {} {}", n, m); } };
+    auto l3{ [&, m]() { std::println("Both:      {} {}", n, m); } };
+    auto l4{ [=, &m]() { std::println("More both: {} {}", n, m); } };
 
     n = 3;
     m = 4;
@@ -252,11 +257,17 @@ static void lambda_06()
 
 static void lambda_07()
 {
-    auto increment = [start = 123]() mutable -> std::size_t {
+    auto start = 10;
+
+    auto increment = [ /*start = 10*/  /*& */] () mutable {
+
+        static int start = 10;
 
         ++start;
         return start;
-        };
+    };
+
+    start = 123;
 
     std::size_t value{ 0 };
 
@@ -270,10 +281,10 @@ static void lambda_07()
 
 static void lambda_08_01()
 {
-    auto lambdaOne = []() { std::println("One"); };
-    auto lambdaTwo = []() { std::println("Two"); };
+    auto lambdaOne = [] () -> void { std::println("One"); };
+    auto lambdaTwo = [] () -> void { std::println("Two"); };
 
-    std::vector<std::function<void()>> myLambdas;
+    std::vector<std::function< void (void) >> myLambdas;
 
     myLambdas.push_back(lambdaOne);
     myLambdas.push_back(lambdaTwo);
@@ -311,7 +322,11 @@ static void lambda_09_01()
     //int x{ 123 };
     //auto lambda3 = [x]() { std::println("{}", x); };
 
-    std::vector<void(*)()> myLambdas;
+    // C:  Funktionszeiger
+
+    void (*fp) (void) = lambda1;
+
+    std::vector < void(*)() > myLambdas;
 
     myLambdas.push_back(lambda1);
     myLambdas.push_back(lambda2);
@@ -357,7 +372,7 @@ static auto helper_b() {
     int m{ 2 };
 
     auto lambda{ [&] { std::println("Reference: {} {}", n, m); } };
-    return lambda;             // I would't do this never ever :-)
+    return lambda;                                       // I would't do this never ever :-)
 }
 
 static void lambda_10()
@@ -558,6 +573,27 @@ static void lambda_16()
 
 // =====================================================================================
 
+static auto frage(const auto& l) {
+
+    l(123, 124);
+}
+
+void lambda_17()
+{
+    int n{ 1 };
+    int m{ 2 };
+
+    auto lambda{ [=] (int x, int y) { 
+        std::println("Frage:  {} {}", n, m); 
+        std::println("Frage:  {} {}", x, y); 
+        }
+    };
+
+    frage(lambda);
+}
+
+
+
 void main_lambdas()
 {
     //lambda_01();
@@ -566,16 +602,18 @@ void main_lambdas()
     //lambda_04();
     //lambda_05();
     //lambda_06();
-    //lambda_07();
+  //  lambda_07();
     //lambda_08();
     //lambda_09();
     //lambda_10();
     //lambda_11();
     //lambda_12();
-    lambda_13();
+    //lambda_13();
     //lambda_14();
     //lambda_15();
     //lambda_16();
+
+    lambda_17();
 }
 
 // =====================================================================================

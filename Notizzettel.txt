@@ -146,6 +146,37 @@ Erklär-Tool:  Modern C++ ===> Classic C++
 https://cppinsights.io/
 
 
+Weiteres Feature von Lambdas:
+
+Erfassung von Daten von "außen":   vom Scope der umgebenden Funktion
+
+
+Frage / Beobachtung:
+
+Lambdas sind Objekte:
+
+Lambdas sind Objekte, die eine Methode beschreiben.
+
+std::vector <Lambdas> ;
+
+a) Nachrichtenwarteschlange
+
+b) Eine Reihe von Thread-Prozeduren (Thread Pool)
+
+
+std::vector <auto> vec;
+
+Soll ich einen Lambda abspeichern als:
+
+a) auto
+
+b) std::function<>
+
+
+
+
+
+
 
 
 
