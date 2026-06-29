@@ -103,5 +103,49 @@ a) 2 Objekte angelegt:
 
    float + double = double
 
+===================================================
+
+Initialisierung
+
+Uniform Initialization
+
+Brace Initialization
+
+VORSICHT beim Wechsel von Classic Initialization zu Modern Initialization:
+
+
+std::vector<int> vec (10);     // 10 Werte , alle 0
+
+std::vector<int> vec { 10 };   // 1 Wert, Wert 10
+
+=========================================================
+
+Lamdas
+------
+
+static void printValue(int& value)
+
+    int m = value;
+00007FF742782DB1  mov         rax,qword ptr [value]  // INDIREKTION
+00007FF742782DB8  mov         eax,dword ptr [rax]  
+00007FF742782DBA  mov         dword ptr [m],eax  
+
+static void printValue(int value)
+
+    int m = value;
+00007FF637EE2DB0  mov         eax,dword ptr [value]  
+00007FF637EE2DB6  mov         dword ptr [m],eax  
+
+===============================================================
+
+Cpp Insights
+------------
+
+Erklär-Tool:  Modern C++ ===> Classic C++
+
+https://cppinsights.io/
+
+
+
 
 

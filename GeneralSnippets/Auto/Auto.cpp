@@ -194,8 +194,12 @@ namespace Auto_Examples {
 
         Person hans{ "Hans" };
 
-        auto name1{ hans.getName() };
+        const std::string& name = hans.getName();
+
+        auto name1 = hans.getName();
         std::println("Message: {}", name1);
+
+
 
         // but:
         const auto& name2{ hans.getName() };

@@ -23,7 +23,7 @@ int main()
     // main entry points code snippets
     try
     {
-       // main_seminar_stl();
+        main_seminar_stl();
 
         //main_accumulate();
         //main_algorithms();
@@ -33,10 +33,10 @@ int main()
         //main_array();
         //main_array_decay();
         //main_attributes();
-        main_auto();
+       // main_auto();
         //main_back_inserter();
         //main_bind();
-        //main_brace_initialization();
+       // main_brace_initialization();
         //main_casts();
         //main_common_type();
         //main_concepts_requires_classes();
@@ -64,7 +64,7 @@ int main()
         //main_initializer_list();
         //main_input_output_streams();  
         //main_invoke();
-        //main_lambdas();
+      //  main_lambdas();
         //main_lambda_and_closure();
         //main_lambdas_this_closure();
         //main_literals();
