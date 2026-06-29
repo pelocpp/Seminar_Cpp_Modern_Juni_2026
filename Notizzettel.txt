@@ -7,3 +7,101 @@ Trainer: Peter Loos
 Guten Morgen
 
 ====================================================
+
+Github:  https://github.com/pelocpp/cpp_modern
+
+====================================================
+
+Was soll drin sein
+
+Überblick
+
+Was muss drin sein
+
+Was interessiert mich
+
+Multi Threading 
+
+====================================================
+
+C#, Java, Python, JavaScript
+
+====================================================
+
+Was ist eine Referenz in C++:
+
+= Ein Alias eines vorhandenen Objekts / Variable.
+
+= Das vorhandene Objekt hat einen NAMEN.
+
+====================================================
+
+Was ist das Problem mit den Kopien ????????????
+
+Whyyyyyyyyyyyyyyyyyyyyyyyyy:  Move - Semantik
+
+Was bedeutet es zu sagen: Ein Objekt hat einen Namen
+
+===================================================
+
+
+i)  0x0000026550a95 c70    // liegt am Stack // temporär (ohne Namen) // wird freigegeben
+
+ii) 0x0000026550a95 ea0    // liegt im Vektor
+
+=======================
+
+i) 0x00000195b8755 960
+
+===================================================
+
+i) 0x0000015618c05 b90
+
+
+================================================
+
+        vec.push_back(BigData(10, 1));
+
+a) 2 Objekte angelegt:
+
+   Ein Tmp-Objekt
+   Eines im Vektor
+
+   2 Möglichkeiten:
+
+   i) Tmp ==> Vektor: teuer kopiert.
+
+   ii) Tmp ==> Vektor verschoben / Tmp wird auf "NUll" gesetzt
+
+   Der Default-Destruktor tut NICHTS.
+
+   ================
+
+   class map
+
+   Binärer Suchbaum  // Wenn die Daten sortiert sein sollen
+
+   class unordered_map
+
+   Hashtabelle / Dictionary (Python)  // Hier sind die Daten unsortiert
+
+
+   ===================================================
+
+   a) Vereinbarung von Variablen
+
+   b) Rückgabetyp 
+
+
+   ===================================================
+
+   In C/C++:
+
+   automatische Typumwandlung:
+
+   long + int =  long
+
+   float + double = double
+
+
+

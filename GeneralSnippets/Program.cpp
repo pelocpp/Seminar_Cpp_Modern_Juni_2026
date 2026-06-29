@@ -11,6 +11,8 @@ import std;
 
 #pragma message(MessageText)
 
+extern void main_seminar_stl();
+
 int main()
 {
     //extern int _main_modules();
@@ -21,6 +23,8 @@ int main()
     // main entry points code snippets
     try
     {
+       // main_seminar_stl();
+
         //main_accumulate();
         //main_algorithms();
         //main_allocator();
@@ -29,7 +33,7 @@ int main()
         //main_array();
         //main_array_decay();
         //main_attributes();
-        //main_auto();
+        main_auto();
         //main_back_inserter();
         //main_bind();
         //main_brace_initialization();
@@ -69,7 +73,7 @@ int main()
         //main_metaprogramming_02(); 
         //main_modularized_standard_library(); 
         //main_modules();
-        //main_move_semantics();
+       // main_move_semantics();
         //main_optional();
         //main_perfect_forwarding();
         //main_placement_new();
@@ -81,7 +85,7 @@ int main()
         //main_reference_wrapper();
         //main_reflection();
         //main_regular_expressions();
-        //main_rvalue_lvalue();
+       // main_rvalue_lvalue();
         //main_sfinae();
         //main_shared_ptr();
         //main_source_location();

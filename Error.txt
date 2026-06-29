@@ -1,0 +1,13 @@
+Das const muss weg ….
+
+static void sayHello(/*const*/ std::string & message)
+
+
+====
+ 
+    static void test_03() {
+
+        std::unordered_map<int, std::string> anotherMap{ { 1, "Hello"  } };
+
+===
+

@@ -10,6 +10,15 @@ namespace Auto_Examples {
 
     static void test_01() {
 
+
+        auto x = 123;
+
+        int y = 345;
+
+
+
+
+
         // type deduction / type inference
 
         auto a = 1;                  // int
@@ -41,9 +50,9 @@ namespace Auto_Examples {
 
     static void test_02() {
 
-        auto n{ 123 };                   // n is type of int
+        auto n = 123;                   // n is type of int
 
-        auto result{ getFunction() };    // result is type of ...
+        auto result = getFunction();    // result is type of ...
 
         std::map<int, std::string> result2 {
             getFunction()
@@ -54,29 +63,59 @@ namespace Auto_Examples {
 
     static void test_03() {
 
-        std::map<int, std::string> anotherMap{ { 1, "Hello"  } };
+        std::unordered_map<int, std::string> anotherMap{ { 1, "Hello"  } };
 
-        std::map<int, std::string>::iterator it = anotherMap.begin();
+        std::unordered_map<int, std::string>::iterator it = anotherMap.begin();
 
-        // std::pair<int, std::string>& entry1 = *it;  // Why this line DOES NOT compile ???
+        //std::pair<int, std::string>& entry1 = *it;  // Why this line DOES NOT compile ???
 
         auto& entry2 = *it;
     }
 
     // ---------------------------------------------------------------------
 
-    static auto sum(float f1, float f2)
+    static short sum(short f1, short f2)
     {
         return f1 + f2;
     }
 
+    template <typename T, typename U>
+    static auto anotherDemo(bool flag, T f, U d) -> decltype (f + d)
+    {
+        if (flag) {
+            return d;
+        }
+        else {
+            return f;
+        }
+    }
+
+    template <typename T, typename U>
+    static decltype ( std::declval<T>() + std::declval<U>() )
+        anotherDemo2(bool flag, T f, U d)
+    {
+        if (flag) {
+            return d;
+        }
+        else {
+            return f;
+        }
+    }
+
+    void testAnotherDemo()
+    {
+        auto result = anotherDemo2(true, 123l, 234l);
+    }
+
+
+
     static auto foo(bool flag, float f, double d) -> double
     {
         if (flag) {
-            return f;
+            return d;
         }
         else {
-            return d;
+            return f;
         }
     }
 

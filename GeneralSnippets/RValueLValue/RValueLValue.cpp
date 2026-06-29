@@ -7,30 +7,42 @@ module modern_cpp:rvalue_lvalue;
 namespace LValueRValue {
 
     // lvalue reference
-    static void sayHello(const std::string& message) {
+    static void sayHello(/*const*/ std::string &  message)
+    {
         std::println("sayHello [std::string&]:  {}", message);
     }
 
     // rvalue reference
-    static void sayHello(std::string&& message) {
+    static void sayHello(std::string && message) {
         std::println("sayHello [std::string&&]: {}", message);
     }
 
     static void test01() {
 
         std::string a = "Hello";
+        
         std::string b = " World";
 
+        std::string* pa = nullptr;  // C Stilistik
+
+        std::string& ra = a; // a) Referenz: Alias-Name für ein vorhandenes Objekt / Variable
+                             // b) Referenz: Enthält eine Adresse eines vorhandenen Objekts (KEINE Kopie)
         sayHello(a);
-        sayHello(a + b);
+
+        std::string tmp = a + b;
+
+        sayHello(a + b);  // + :  Konkatenation: "Hello World"
     }
 
     // -------------------------------------------------------------------
 
     static void helper(std::string&& message)
     {
-        sayHello(message);
-        // sayHello(std::move(message));    // casting an lvalue to an rvalue
+        // sayHello(message);     // a) sayHello(&)  : das Objekt hat einen Namen
+        //                        // b) sayHello(&&) : message ist vom Typ &&
+
+        sayHello(std::move ( message));     // 
+
     }
 
     static void test02()
