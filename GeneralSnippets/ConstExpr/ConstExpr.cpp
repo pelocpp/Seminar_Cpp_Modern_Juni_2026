@@ -13,6 +13,27 @@ module modern_cpp:const_expr;
 
 namespace ConstExprVariables {
 
+    auto shortestLambda = [] {};
+
+    auto anotherShortLambda = [] () {};
+
+    auto malZweiLambda = [](int n) { return n * 2; };
+
+    constexpr auto malZweiLambdaConstexpr = [](auto n) { return n * 2; };
+
+    constexpr auto value = malZweiLambdaConstexpr(10);
+
+    constexpr auto value2 = malZweiLambdaConstexpr(20);
+
+    constexpr auto value3 = [](auto n) { return n * 2; } (30);  // IIFE
+
+    // Makros // defines ...
+
+}
+
+
+namespace ConstExprVariables {
+
     constexpr double Pi = 3.14159265359;
 
 #define   PI   3.14159265359
@@ -216,7 +237,7 @@ namespace ConstExprDynamicData {
 
     static void testDynamicData()
     {
-        constexpr int sum{ naiveSum(10) };
+        constexpr int sum{ naiveSum(7) };
         std::println("Sum from 1 up to 10: {}", sum);
     }
 }

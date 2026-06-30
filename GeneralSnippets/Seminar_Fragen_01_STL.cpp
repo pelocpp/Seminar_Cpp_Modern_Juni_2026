@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <print>
 #include <string>
+#include <iostream>
 
 // The signature does not need to have const &.
 
@@ -78,4 +79,45 @@ static void lambda_01_modern()
 void main_seminar_stl()
 {
     lambda_01_modern();
+}
+
+// =================================================================
+
+void main_seminar_vector()
+{
+    std::vector<std::size_t> numbers;
+
+    numbers.reserve(80);  // use reserve ..........
+
+    for (std::size_t i{}; i != 100; ++i) {
+
+        numbers.push_back( 2 * i );
+
+        std::println("{}: Size: {} - Capacity: {}", i, numbers.size(), numbers.capacity());
+    }
+
+    numbers.shrink_to_fit();
+
+    std::println("    Size: {} - Capacity: {}", numbers.size(), numbers.capacity());
+}
+
+void main_seminar_zeichenketten()
+{
+    const char* cp = "111111111111111111111111111111111111111111111";
+
+    std::string s = "111111111111111111111111111111111111111111111";
+
+    std::size_t sz = sizeof(std::string);
+
+    std::string klein = "123";   // kurz ???????????????????
+
+    auto size{ sizeof(std::string) };
+    auto capacity{ std::string{}.capacity() };
+    auto small{ std::string(capacity, '*') };
+    auto big{ std::string(capacity + 1, '#') };
+
+    std::cout << "sizeof  : " << size << std::endl;
+    std::cout << "Capacity: " << capacity << std::endl;
+    std::cout << "Small   : " << small.capacity() << ": " << small << std::endl;
+    std::cout << "Big     : " << big.capacity() << ": " << big << std::endl;
 }

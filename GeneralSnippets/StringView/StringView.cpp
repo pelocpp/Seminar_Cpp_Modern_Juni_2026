@@ -8,6 +8,7 @@ namespace StringViewDemonstration {
 
     static void test_01()
     {
+        // Read-Only Objekt
         std::string_view sv{ "AAAAAAAAAAAAAAAAAAAAAAAAAAAA" };  // Konstante Zeichenkette
 
         std::string s{ "AAAAAAAAAAAAAAAAAAAAAAAAAAAA" };        //  Heap
@@ -18,15 +19,16 @@ namespace StringViewDemonstration {
 
     static void test_02()
     {
-        std::string s{ "AAAAAAAAAAAAAAAAAAAAAAAAAAAA" };
+        std::string s{ "AAAAAAAAAAAAAAAAAAAAAAA" };
 
         std::string_view sv{ s };
 
         std::println("{}", sv);
 
-        s += "BBBBBBBBBBBBBBBBBBBBBBBBBBBB";        // Caution: the content of s is reallocated !
+        s += "123456789";        // Caution: the content of s is reallocated !
 
         std::println("{}", sv);
+        std::println("s: {}", s);
     }
 
     static void test_03()
@@ -100,11 +102,11 @@ namespace StringViewDemonstration {
 void main_string_view()
 {
     using namespace StringViewDemonstration;
-    test_01();
+    //test_01();
     test_02();
-    test_03();
-    test_04();
-    test_05();
+    //test_03();
+    //test_04();
+    //test_05();
 }
 
 // =====================================================================================

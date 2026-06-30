@@ -173,10 +173,329 @@ a) auto
 b) std::function<>
 
 
+// ================================================================
+
+new / delete
+
+Detected memory leaks!
+Dumping objects ->
+C:\Peter_Loos\GeneralSnippets\SharedPtr\SharedPtr.cpp(130) : {151} normal block at 0x0000017C22CBCC70, 40 bytes long.
+ Data: <                > CD CD CD CD CD CD CD CD CD CD CD CD CD CD CD CD 
+Object dump complete.
 
 
 
+Detected memory leaks!
+Dumping objects ->
+C:\Peter_Loos\GeneralSnippets\SharedPtr\SharedPtr.cpp(134) : {153} normal block at 0x00000160EBB54D10, 20 bytes long.
+ Data: <                > CD CD CD CD CD CD CD CD CD CD CD CD CD CD CD CD 
+C:\Peter_Loos\GeneralSnippets\SharedPtr\SharedPtr.cpp(132) : {152} normal block at 0x00000160EBB4CCB0, 40 bytes long.
+ Data: <                > CD CD CD CD CD CD CD CD CD CD CD CD CD CD CD CD 
+Object dump complete.
 
+// =================================================
+
+Problem:  Fehlende delete Problem
+
+Idee:
+
+A) C++ // Klassen, Objekte
+
+B) Konstruktor(en), Destruktor
+
+C) Wann wird ein Destruktor aufgerufen ???
+
+   {
+      X  obj;
+
+   } <== Destruktor von obj aufgerufen
+
+D) Beobachtung: Der Aufruf des Destruktors ist deterministisch // garantiert.
+
+E) new / delete:  ==> Zeiger (Pointer): Hüllenobjekt eingepackt wird:
+
+   i) Hüllenobjekt:
+            Konstruktor:  Zeiger an das Hüllenobjekt übergeben
+            Destruktor:   delete Pointer;
+
+Details:   auto_ptr   // deprecated
+
+Überarbeitung:
+
+2 Konzepte:
+
+std::unique_ptr
+
+std::shared_ptr
+std::weak_ptr
+
+I) Konzept / Strategie der std::unique_ptr Klasse:
+
+   Besitzer / Owner:
+
+   Zu einem Zeitpunkt im Programm gibt es zu einem std::unique_ptr Objekt
+   nur EINEN Besitzer.
+
+   Beispiel: std::unique_ptr Objekt kopieren: Geht NICHT.
+
+II) Konzept / Strategie der std::shared_ptr Klasse:
+
+   Besitzer / Owner:
+
+   Zu einem Zeitpunkt im Programm kann es zu einem std::shared_ptr Objekt
+   MEHRERE Besitzer geben.
+
+      Beispiel: std::shared_ptr Objekt kopieren: Geht.
+
+      3 Kopien eines std::shared_ptr Objekts
+
+      Erstes std::shared_ptr Objekte geht aus dem Scope: delete ??????
+
+      Java, C#:  Garbage Collectors:  Zählen die Referenzen (Pointer),
+                  die zu einem Objekt vorhanden sind:
+
+                  Referenz-Zähler: 3 ===> 1 ==> 0  :  delete
+
+std::shared_ptr
+
+versus
+
+std::unique_ptr
+
+=============================
+
+std::shared_ptr:   Dieser funktioniert nicht immer ?!?!?!?!?!?!
+
+2 Antworten:
+
+i)  Lösung: std::weak_ptr
+
+ii) Was ist das eigentliche Problem
+
+Zyklen in den Objekten.
+
+
+"Observer - Pattern"
+
+Grooooooooooooob:
+
+A) Zustandsobjekt:  Wetterdaten, Aktienkurse, Business Logic Object (Daten)
+
+B) Bebachter:
+
+==> Ein Beobachter kennt ein  Zustandsobjekt
+
+==> Wenn sich am Zustandsobjekt etwas ändert: Ein oder mehrere Beobachter informiert werden.
+
+
+==============================================================
+
+Wie gehen wir mit std::shared_ptr und std::weak_ptr um ????????
+
+
+A) Ein Objekt ist erstmalig anzulegen:   Owner  // std::shared_ptr
+
+B) Dieses Objekt soll grafisch angezeigt werden ... Visualisierung
+   Dieses Objekt soll statistisch bearbeitet werden ...
+
+   std::weak_ptr ... lock ... nullptr
+
+ODER:
+
+A) Zustandsobjekt:  Wetterdaten, Aktienkurse, Business Logic Object (Daten)
+
+   std::shared_ptr
+
+B) Bebachter:
+
+   std::shared_ptr
+
+==> Ein Beobachter kennt ein  Zustandsobjekt
+
+==> Wenn sich am Zustandsobjekt etwas ändert: Ein oder mehrere Beobachter informiert werden.
+
+Detail: Wie geht das?
+
+i) Ein Beobachter meldet sich am Zustandsobjekt an: register, attach, ...
+
+ii) Wie speichert das Zustandsobjekt die Beobachter ab ??? 
+
+    Liste ...   std::weak_ptr
+
+FAZIT:
+
+A) Kleine Lösung:  std::unique_ptr
+
+B) Grosse Lösung:  ZU JEDEM std::shared_ptr sollte man formulieren können:
+                   Es gibt einen neuen Besitzer.
+
+                   Wenn ein std::shared_ptr "weiter gereicht" werden soll:
+                   Geht das auch ohne "Besitz"-Anspruch ?????????????
+
+                   std::weak_ptr // Visualisierung
+
+
+==============================================================
+
+auto:
+
+i)   Variablenvereinbarung
+ii)  Rückgabetyp
+iii) Parameter
+
+==============================================================
+
+Wie viele for-Schleifen gibt es in C++ ????????????
+---------------------------------------------------
+
+===> Modernen Variante: Range-based for Loop
+
+==>  History: 
+
+==============================================================
+
+std::vector
+
+neueCap = alteCap + Hälfte (alteCap)
+
+
+neueCap = alteCap * 1.5;
+
+==============================================================
+
+constexpr
+
+vs.
+
+const 
+
+
+constexpr: Anwendungsfall:
+
+Manchmal gibt es Daten, Tabellen, die man in einem Programm benötigt,
+deren Berechnung aber auch zur Übersetzungszeit stattfinden könnte.
+
+===========================================================
+
+std::initializer_list
+---------------------
+
+Hintergrund: Von Version zu Version Laufzeitverbesserungen hinzuzufügen.
+
+std::initializer_list:  { ... } STACK
+
+vs.
+
+std::vector:            { ... } HEAP
+
+Laufzeitverbesserungen: 50% 
+
+        std::vector<int> tc2{ 10 };  // Size: 1 // Value: 10
+        std::vector<int> tc3( 10 );  // Size: 10 // 10 Values 0
+
+===============================================================
+
+Lesbarkeit:
+-----------
+
+UDL    User Defined Literal
+
+int n = 123;
+
+int distance = 123_km;
+
+int distance = 123_m;
+
+int weight = 100_kg;
+
+int weight = 100_kilogramm;
+
+unsigned int color = 0xFF0000_farbe;
+
+unsigned int color = 0xFF0000_rgb;
+
+Color color = 0xFF0000_farbe;   // Color ist eine Klasse
+
+123.345f
+
+
+Programmiersprache:  Lexikon  // Grammatik (Syntax) // .........
+
+C++:  Das Lexikon ist erweiterbar.
+
+Color color = "FF:00:00"_farbe;   // Color ist eine Klasse
+
+
+Time t = "30:06:2026-15:38"_datum_uhrzeit;
+
+Neuen Operator:     operator ""
+
+
+===============================================================
+
+Zeichenketten
+-------------
+
+std::string s = "ABCDE";
+
+void func()
+{
+    std::string s = "ABCDE";
+
+    s.insert (3, "123");   // "ABCD123E"
+}
+
+"111111111111111111111111111111111111111111111"
+
+Wo liegt das ??
+
+a) NICHT am HEAP
+
+b) In einem globalen Datensegment // Read-Only
+
+c) Auch möglich: Code Segment.
+
+Wunsch: Weg von const char*
+
+Hmmmm:   std::string: Erst mal keine Lösung: ==> Heap // Unperformant
+
+Besser:  std::string_view: Ist eine OO Hülle um ein const char*
+
+std::string_view:   2 Daten:
+
+a) Anfangsadresse (const char*)
+b) Länge:
+
+
+
+Beispiel:  ... 400  // C90
+
+std::string_view:
+
+a) No Go Beispiel:  Gebe einem std::string_view einen Pointer von Zeichen,
+                   die auf dem Heap liegen.
+
+b) Regelfall: Ein std::string_view wird mit einer konstanten Zeichenkette belegt.
+
+std::string_view: "Non Owning Container"
+
+=====================================================
+
+SSO   Small String Optimization
+
+Heap
+
+Hmmmm, was ist den mit "kurzen" Zeichenketten ?
+
+std::string klein = "123";
+
+Optimierung:  Man schafft für kurze Zeichenkette
+              Platz im std::string Objekt selbst.
+
+
+"Wandbox Compiler"
+
+https://wandbox.org/
 
 
 

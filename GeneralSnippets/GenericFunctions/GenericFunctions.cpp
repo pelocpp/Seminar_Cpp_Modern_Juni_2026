@@ -206,7 +206,9 @@ namespace GenericLambdasExample {
     static void test_01()
     {
         // define a generic lambda
-        auto isGreaterThanFifty = [](auto n) { return n > 50; };
+        auto isGreaterThanFifty = [] (auto n) -> bool { 
+            return n > 50; 
+        };
 
         std::vector<int> intValues{ 44, 65, 22, 77, 2 };
 

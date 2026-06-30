@@ -21,6 +21,10 @@ namespace SharedPointer {
 
     static void test_01() {
 
+        //std::shared_ptr<int> ptrX;
+        //std::shared_ptr<int> ptrY;
+        //ptrX = ptrY;
+
         // 'ptr1' is a shared pointer for a new instance of an int
         std::shared_ptr<int> ptr1{ new int{ 123 } };
         // or
@@ -61,6 +65,8 @@ namespace SharedPointer {
         std::println("Value:       {}", *ptr2);
         std::println("Value:       {}", *ptr3);
 
+        ptr1.reset();
+
         // shared ptr are going out of scope right now!
     }
 
@@ -73,7 +79,7 @@ namespace SharedPointer {
     }
 
     // note: play with 'call-by-value' or 'call-by-reference'
-    static void storeSharedPointer(std::shared_ptr<int> ptr)
+    static void storeSharedPointer(std::shared_ptr<int>& ptr)
     {
         std::println("Inner scope: {}", ptr.use_count());
     }
@@ -125,6 +131,24 @@ void main_shared_ptr()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     using namespace SharedPointer;
+
+#if 0
+
+    std::size_t bytes = sizeof(int);
+
+   // int* ip = new int;      // scalar new
+    int* ip = new int[10];    // array new
+
+    int* ip2 = new int[5];    // array new
+
+    //char ch;
+    //std::cin >> ch;
+
+   //  delete ip;        // scalar delete
+   delete[] ip;        // array delete
+
+#endif
+
     test_01();
     test_02();  // interaction with functions/methods
     test_03();  // support of arrays

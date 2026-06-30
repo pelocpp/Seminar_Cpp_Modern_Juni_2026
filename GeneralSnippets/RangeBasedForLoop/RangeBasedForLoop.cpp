@@ -28,6 +28,7 @@ namespace RangeBasedForLoop {
     static void test_iterations()
     {
         // container of integral data type
+       // std::list<int> vec{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         std::vector<int> vec{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         // =========================================================================
@@ -55,7 +56,7 @@ namespace RangeBasedForLoop {
         );
         std::cout << std::endl;
 
-        // d) Looks like C++, classic style, 'Functor'-stylistic
+        // d) Looks like C++, classic style, aufrufbares Objekt
         std::for_each(
             vec.cbegin(),                   // Iterator-object for begin of range
             vec.cend(),                     // Iterator-object for end of range
@@ -79,18 +80,20 @@ namespace RangeBasedForLoop {
         // f) Using Range-based 'for' Loop: Very modern style
         for (int n : vec) {
             std::cout << n << " ";
+            n = 2 * n;
             if (n == 2)  // break is possible
                 break;
         }
         std::cout << std::endl;
 
         // g) Same as f), using 'const int&'
-        for (const int& n : vec) {
+        for (/*const*/ int& n : vec) {
+            n = 2 * n;
             std::cout << n << " ";
         }
         std::cout << std::endl;
 
-        // h) Same as f): Using 'auto' keyword to cause type inference to be used
+        // h) Same as f): Using 'auto' keyword 
         for (auto n : vec) {
             std::cout << n << " ";
         }

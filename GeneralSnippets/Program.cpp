@@ -12,11 +12,20 @@ import std;
 #pragma message(MessageText)
 
 extern void main_seminar_stl();
+extern void main_seminar_zeichenketten();
+
+// extern void printValue(int value);
+extern void main_seminar_vector();
 
 int main()
 {
     //extern int _main_modules();
     //_main_modules();
+
+    // printValue(123);
+
+    main_seminar_zeichenketten();
+    return 0;
 
     std::println(MessageText);
 
@@ -42,7 +51,7 @@ int main()
         //main_concepts_requires_classes();
         //main_concepts_requires_functions();
         //main_const_variants();
-        //main_constexpr();
+       // main_constexpr();
         //main_constexpr_crc();
         //main_constructor_invocations();
         //main_copy_move_elision();
@@ -60,14 +69,14 @@ int main()
         //main_functional_programming_legacy();
         //main_functional_programming_alternate();
         //main_generate();
-        //main_generic_functions();
-        //main_initializer_list();
+       // main_generic_functions();
+       // main_initializer_list();
         //main_input_output_streams();  
         //main_invoke();
-        main_lambdas();
+        //main_lambdas();
         //main_lambda_and_closure();
         //main_lambdas_this_closure();
-        //main_literals();
+       // main_literals();
         //main_memory_leaks_detection();
         //main_metaprogramming_01();
         //main_metaprogramming_02(); 
@@ -81,7 +90,7 @@ int main()
         //main_raii();
         //main_raii_02();
         //main_random();
-        //main_range_based_for_loop();
+      //  main_range_based_for_loop();
         //main_reference_wrapper();
         //main_reflection();
         //main_regular_expressions();
@@ -92,7 +101,7 @@ int main()
         //main_spaceship_operator();
         //main_sso();
         //main_static_assert();
-        //main_string_view();
+       // main_string_view();
         //main_structured_binding();
         //main_templates_class_basics_01();
         //main_templates_class_basics_02();
@@ -114,7 +123,7 @@ int main()
         //main_variant();
         //main_virtual_base_class_destructor();
         //main_virtual_override_final();
-        //main_weak_pointer();
+       // main_weak_pointer();
 
         //main_exercises();
     }

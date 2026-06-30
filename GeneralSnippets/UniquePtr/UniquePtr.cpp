@@ -13,8 +13,16 @@ namespace UniquePointerGeneral {
 
     static void test_01()
     {
+        //std::unique_ptr<int> ptrX;
+        //std::unique_ptr<int> ptrY;
+        //ptrX = ptrY;
+
+
+
+
         // create a unique_ptr to an int with value 123
         std::unique_ptr<int> ptr1{ new int{ 123 } };
+        
         // or
         // std::unique_ptr<int> ptr1{ std::make_unique<int>(123) };
         // or
@@ -55,20 +63,41 @@ namespace UniquePointerGeneral {
 
     // ===========================================================================
 
+    static void uniquePointerWithContainer()
+    {
+        std::vector <std::unique_ptr<int>> pointers;
+
+        std::unique_ptr<int> ptr1{ new int{ 123 } };
+
+        pointers.push_back(std::move(ptr1));   // call-by-copy
+
+        pointers.push_back( std::unique_ptr<int> {new int{ 456 }} );
+
+        std::unique_ptr<int> ptr2 = std::move(pointers[0]);
+
+        std::unique_ptr<int> ptr3{ new int{ 789 } };
+
+        pointers[0] = std::move(ptr3);
+    }
+
+
     static std::unique_ptr<int> loadUniquePointer()
     {
+        std::unique_ptr<int> ptr1{ new int{ 123 } };
+
         std::unique_ptr<int> ptr{ std::make_unique<int>(100) };
+
         return ptr;
     }
 
-    static void storeUniquePointer(std::unique_ptr<int>& ptr)
+    static void storeUniquePointer(const std::unique_ptr<int>& ptr)
     {
         std::println("*ptr:    {}", *ptr);
         (*ptr)++;
         std::println("*ptr:    {}", *ptr);
 
         // take ownership right now:
-        // std::unique_ptr<int> ptr2{ std::move(ptr) };
+      //  std::unique_ptr<int> ptr2{ std::move(ptr) };
     }
 
     static void storeUniquePointerSafe(const std::unique_ptr<int>& ptr)
@@ -96,6 +125,7 @@ namespace UniquePointerGeneral {
     {
         // retrieving a unique pointer from a function
         std::unique_ptr<int> ptr{ loadUniquePointer() };
+
         std::println("*ptr:    {}", *ptr);
 
         // provide a function with a unique pointer: who owns the pointer now?
@@ -126,6 +156,7 @@ namespace UniquePointerGeneral {
     {
         // creates a unique_ptr to an array of 5 A objects
         std::unique_ptr<A[]> ptr{ std::make_unique<A[]>(5) };
+
         ptr.reset();
     }
 
@@ -272,10 +303,15 @@ namespace UniquePointerWrappingWin32Handles {
 
 void main_unique_ptr()
 {
+
+
     using namespace UniquePointerGeneral;
     test_01();   
     test_02();     // interaction with functions/methods
     test_03();     // support of arrays
+
+    uniquePointerWithContainer();
+
 
     using namespace UniquePointer_SourceSinkPattern;
     test_04();
