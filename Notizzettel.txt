@@ -499,3 +499,60 @@ https://wandbox.org/
 
 
 
+Frage zu C:
+
+C:
+
+
+NO std::string
+
+C:  
+
+A) const char*    // konstante Zeichenketten
+
+B) 
+
+func()
+{
+    char buffer[128];   // STACK
+
+}
+
+char* func()
+{
+    char* ptr = malloc (128 * sizeof (char));  // HEAP
+
+
+    return ptr;
+}
+
+C:  strcmp, strcpy, strcat, …
+
+Schmierzeichen:
+
+CC: Stack , nicht belegt
+
+HEAP:   malloc, aber nicht vorbelegt // calloc
+
+Oder: bereits free:  Aber Zeiger wird noch verwendet …
+
+
+strcpy:  Von a nach b
+
+char* ptr1; da ist erst mal KEIN Speicher vorhanden !!!!!!!!!
+char* ptr2;
+
+strcpy (ptr1, ptr2, … );
+
+KORREKT:
+
+char buffer[64];
+
+strcpy (ptr1, buffer, … );
+
+ODER: 
+
+char* buffer = malloc (128 * sizeof (char));  // HEAP
+
+
+==========================================================================
