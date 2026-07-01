@@ -592,3 +592,105 @@ C) Threads: Thread-Prozedur // Daten // Parameter:  Transportiert:
 
 ======================================
 
+std::tuple
+
+   std::tuple <char, int, double> values;   // Container
+
+std::tuple: Für Schreibfaule
+
+struct Data
+{
+    char    m_id;
+    int     m_value;
+    double  m_value2;
+};
+
+// ======================================
+
+Structured Binding
+
+// ======================================
+
+int value;
+
+std::string s;   ""   keine Tel.Nummer
+
+Frage:  Habe ich einen gültigen Wert ?
+
+Sensor:  Wert vom Sensor einlesen ....
+
+value = 0;   -1;  -2;  -MAX_INT;  Record_Set: 
+
+int value;
+bool isValid;    // true: false
+
+===>  Hülle:  std::optional
+
+// C#:   int?
+
+
+// std::optional:  Monadisches Interface
+-----------------------------------------
+
+
+Fluent Programming Style
+
+
+obj.method().method2().method3();
+
+// ==========================================================
+
+Fehlerbehandlung
+
+std::expected
+
+a) Exception:  Macht den Code länger .......... Macht die Laufzeit nicht schneller ...
+
+b) Return Code:  Disziplin:  Den muss man abfragen.
+
+c) std::expected
+
+
+// ==========================================================
+
+
+
+std::span:                2 Daten: Anfangsadresse eines continous zusammenhängenden Speicherbereichs
+                                   // C-Array, std::arry, std::vector
+                                   // Länge
+
+
+std::string_view:         2 Daten: Anfangsadresse // Länge
+
+std::string_view ist ein NON OWNING Container:   std::string :: VORSICHT ....
+
+
+
+
+std::initializer_list
+
+
+std::span ist ein NON OWNING Container:   std::vector :: VORSICHT ....
+
+
+// =============================================================
+
+std::variant     //   std::any
+
+Enthält Daten unterschiedlichen Typs ... aber zu einem Zeitpunkt 
+                nur EINE Variable.
+
+Beispiel:   Excel  // Google Sheets    ===>  Zelle // Cell
+
+            Ein Wert:  int, Zeichenkette, Time, Date, Currency, float ....
+
+Man kann einen std::variant  besuchen :)
+
+=================================================================
+
+Reflection  //  C++ 26
+
+
+Metaprogramming
+
+Übersetzungszeit

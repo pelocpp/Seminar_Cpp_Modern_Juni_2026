@@ -332,7 +332,8 @@ namespace StdArray {
 
     static void test_30() {
 
-        int carr[]{ 1, 2, 3, 4, 5 };
+        int carr[5]{ 1, 2, 3, 4, 5 };
+
         printArray(carr, 5);
 
         std::array arr{ 6, 7, 8, 9, 10 };
@@ -374,7 +375,8 @@ namespace StdArray {
         std::array arr{ 6, 7, 8, 9, 10 };
         printArray(std::span{ arr });
 
-        std::vector vec{ 1, 3, 5, 7, 9 };
+        std::vector vec{ 1, 3, 5, 7, 9 };   // CTAD // class template argument deduction
+
         printArray(std::span{ vec });
     }
 

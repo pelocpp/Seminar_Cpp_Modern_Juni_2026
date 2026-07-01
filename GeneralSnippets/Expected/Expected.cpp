@@ -65,13 +65,23 @@ namespace StdExpected {
     //==================================================================================
     // std::expected
 
-    static std::expected<double, std::string> divide(double numerator, double denominator) {
+    static std::expected<double, std::string> divide(double numerator, double denominator)  {
 
         if (denominator == 0.0) {
-            return std::unexpected{ "Error: Division by zero" };
+            return std::unexpected<std::string>{ "Error: Division by zero" };
         }
 
         return std::expected<double, std::string> { numerator / denominator };
+    }
+
+    static std::expected<double, double> divideZWEI(double numerator, double denominator) {
+
+        if (denominator != 0.0) {
+            return std::expected<double, double> { numerator / denominator };
+        }
+        else {
+            return std::unexpected<double>{ 444.444 };
+        }
     }
 
     static void test_excepted_01()
@@ -223,7 +233,8 @@ namespace StdExpected {
 
     // add five
     static std::expected<double, std::string> addFive(double value) {
-        return value + 5;
+       // return value + 5
+        return  std::expected<double, std::string> { value + 5 };
     }
 
     // to the power of three
@@ -247,7 +258,7 @@ namespace StdExpected {
     static void test_excepted_05()
     {
         auto numerator = 20.0;
-        // auto denominator = 2.5;         // success
+     //   auto denominator = 2.5;         // success
         auto denominator = 20.0;     // error
 
         auto result = divide(numerator, denominator)

@@ -48,6 +48,8 @@ namespace TupleSamples {
     // =======================================================
     // demonstrating use of std::vector with std::tuple elements
 
+    // typedef ...
+
     using Row = std::tuple<int, char, double, std::string>;
 
     static std::string rowToString(const Row& row)
@@ -89,6 +91,7 @@ namespace TupleSamples {
         Row row3{ 12, 'C', 3.33, "Hans" };
 
         std::vector<Row> mySheet;
+   //     std::vector< std::tuple<int, char, double, std::string> > mySheet2;
 
         mySheet.push_back(row1);
         mySheet.push_back(row2);

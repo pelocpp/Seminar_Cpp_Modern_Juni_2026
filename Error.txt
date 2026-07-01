@@ -62,5 +62,8 @@ Destruktor hinzufügen ……………...
 
 ===
 
+Lesbarkeit:  Structured Binding  // bei Marketing ….
+
+===
 
 

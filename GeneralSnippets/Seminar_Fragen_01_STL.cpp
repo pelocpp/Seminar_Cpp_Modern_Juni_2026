@@ -3,6 +3,7 @@
 #include <print>
 #include <string>
 #include <iostream>
+#include <list>
 
 // The signature does not need to have const &.
 
@@ -100,6 +101,37 @@ void main_seminar_vector()
 
     std::println("    Size: {} - Capacity: {}", numbers.size(), numbers.capacity());
 }
+
+void main_seminar_vector_die_zweite()
+{
+    using MyContainer = std::list<int>;
+
+    MyContainer numbers;
+
+    MyContainer::value_type elem = 123;
+
+    numbers.push_back(elem);
+
+    std::list<int> numbers2;
+
+    std::list<int>::iterator pos = numbers.begin();
+
+    auto pos2 = numbers.begin();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void main_seminar_zeichenketten()
 {

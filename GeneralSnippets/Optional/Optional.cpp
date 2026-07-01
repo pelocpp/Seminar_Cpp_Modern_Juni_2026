@@ -158,17 +158,17 @@ namespace OptionalExamples {
 
     static void test_01_optional_monadic()
     {
-        std::optional<int> n{ 123 };
+        std::optional<int> n{ 999 };
         // or
         // std::optional<int> n{ std::nullopt };
 
-        auto result = n.and_then([](auto x) /*-> std::optional<std::string>*/ {
+        auto result = n.and_then([](auto x) -> std::optional<std::string> {
             if (x == 123) {
                 return std::optional<std::string>("Got expected value 123");
             }
             else {
-                //return std::nullopt;
-                return std::optional<std::string>("Got unexpected value! ");
+                return std::nullopt;
+                //return std::optional<std::string>("Got unexpected value! ");
             }
             });
 
@@ -200,9 +200,9 @@ namespace OptionalExamples {
     {
         auto user{ std::make_optional<User>("Hans", "Mueller", 30) };
         // or
-        // auto user{ std::make_optional<User>("Sepp", "", 30) };
+       // auto user{ std::make_optional<User>("Sepp", "", 30) };
 
-        auto result = user.and_then([](const auto& user) {
+        auto result = user.and_then( [](const auto& user) {
             return hasValidName(user);
             }
         );

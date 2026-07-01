@@ -23,7 +23,7 @@ namespace VariadicTemplatesIntro_Seminar {
 #endif
 
     // C++ 17
-
+#if Cpp_17
     template <typename T, typename ... TArgs>   // U: pack
     void printer(T n, TArgs ... args) {         // m: pack
 
@@ -34,6 +34,21 @@ namespace VariadicTemplatesIntro_Seminar {
             printer < TArgs ... >(args ...);
         }
     }
+#endif
+
+// #if Cpp_20
+
+    void printer(auto n) {
+
+        std::println("{}", n);
+    }
+
+    void printer(auto n, auto ... args) {            // m: pack
+
+        std::println("{}", n);
+        printer (args ...);
+    }
+// #endif
 
     void test_seminar_demo() {
 

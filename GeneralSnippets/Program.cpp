@@ -34,7 +34,7 @@ int main()
         //main_allocator();
         //main_any();
         //main_argument_dependent_name_lookup();
-        //main_array();
+      //  main_array();
         //main_array_decay();
         //main_attributes();
        // main_auto();
@@ -57,7 +57,7 @@ int main()
         //main_erase_remove_idiom();
         //main_expression_templates();
         //main_exception_safety();
-        //main_expected();
+       // main_expected();
         //main_explicit_keyword();
         //main_folding();
         //main_functional_programming();
@@ -78,7 +78,7 @@ int main()
         //main_modularized_standard_library(); 
         //main_modules();
        // main_move_semantics();
-        //main_optional();
+      //  main_optional();
         //main_perfect_forwarding();
         //main_placement_new();
         //main_println();
@@ -97,7 +97,7 @@ int main()
         //main_sso();
         //main_static_assert();
        // main_string_view();
-        //main_structured_binding();
+       // main_structured_binding();
         //main_templates_class_basics_01();
         //main_templates_class_basics_02();
         //main_templates_function_basics();
@@ -106,7 +106,7 @@ int main()
         //main_templates_specialization();
         //main_to_underlying();
         //main_transform();
-        //main_tuple(); 
+      //  main_tuple(); 
         //main_two_phase_name_lookup();
         //main_type_erasure();
         //main_type_traits();
@@ -115,7 +115,7 @@ int main()
         //main_variadic_templates_working_on_every_argument();
         //main_variadic_templates_sum_of_sums();
         //main_variadic_templates_mixins();
-        //main_variant();
+      //  main_variant();
         //main_virtual_base_class_destructor();
         //main_virtual_override_final();
        // main_weak_pointer();
