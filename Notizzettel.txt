@@ -556,3 +556,39 @@ char* buffer = malloc (128 * sizeof (char));  // HEAP
 
 
 ==========================================================================
+
+Mittwoch:
+---------
+
+Variadische Templates
+
+a) C++ 11 in das Fundament von C++ eingedrungen
+
+b) Sind nicht ganz einfach :)
+
+c) Man sollte sie kennen !
+
+d) Es wird der Tag kommen: Auch anwenden.
+
+Historie:
+
+Bjarne Stroustrup                    C with Classes
+
+Alexander Alexandrowitsch Stepanow   Generische Programmierung (Templates)  <  >  
+
+                                     C++ Standard Template Library.
+
+
+Variadische Templates: Whyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+
+A) Transport von Daten von einem Ort A zu einem Ort B
+
+make_unique:  Parametern ============> Konstruktor 
+
+B) std::vector  ...  emplace 
+
+
+C) Threads: Thread-Prozedur // Daten // Parameter:  Transportiert: 
+
+======================================
+

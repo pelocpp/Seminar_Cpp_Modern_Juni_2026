@@ -21,10 +21,10 @@ namespace UniquePointerGeneral {
 
 
         // create a unique_ptr to an int with value 123
-        std::unique_ptr<int> ptr1{ new int{ 123 } };
+       // std::unique_ptr<int> ptr1{ new int{ 123 } };
         
         // or
-        // std::unique_ptr<int> ptr1{ std::make_unique<int>(123) };
+         std::unique_ptr<int> ptr1{ std::make_unique<int>(123) };
         // or
         // auto ptr1{ std::make_unique<int>(123) };
 

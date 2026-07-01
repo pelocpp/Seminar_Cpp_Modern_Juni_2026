@@ -4,6 +4,112 @@
 
 module modern_cpp:variadic_templates;
 
+
+namespace VariadicTemplatesIntro_Seminar {
+
+#if Cpp_11
+    template <typename T>
+    void printer(T n) {
+
+        std::println("{}", n);
+    }
+
+    template <typename T, typename ... TArgs>   // U: pack
+    void printer(T n, TArgs ... args) {            // m: pack
+
+        std::println("{}", n);
+        printer < TArgs ... >(args ...);
+    }
+#endif
+
+    // C++ 17
+
+    template <typename T, typename ... TArgs>   // U: pack
+    void printer(T n, TArgs ... args) {         // m: pack
+
+        std::println("{}", n);
+
+        if constexpr ( sizeof... (args) > 0 ) 
+        {
+            printer < TArgs ... >(args ...);
+        }
+    }
+
+    void test_seminar_demo() {
+
+        printer<int, int, int, int>( 1, 2, 3, 4 );   // C++ 11 ....
+    }
+
+    // ===========================================================
+
+    class DoSomething {
+    private:
+        int m_var1;
+        int m_var2;
+        int m_var3;
+
+    public:
+        DoSomething() : m_var1{}, m_var2{}, m_var3{} {
+            std::cout << "c'tor()" << std::endl;
+        }
+
+        DoSomething(int n) : m_var1{ n }, m_var2{}, m_var3{} {
+            std::cout << "c'tor(int)" << std::endl;
+        }
+
+        DoSomething(int n, int m) : m_var1{ n }, m_var2{ m }, m_var3{} {
+            std::cout << "c'tor(int, int)" << std::endl;
+        }
+
+        DoSomething(int n, int m, int k) : m_var1{ n }, m_var2{ m }, m_var3{ k } {
+            std::cout << "c'tor(int, int, int)" << std::endl;
+        }
+
+
+        ~DoSomething()  {
+            std::cout << "d'tor()" << std::endl;
+        }
+
+        friend std::ostream& operator<< (std::ostream&, const DoSomething&);
+    };
+
+    std::ostream& operator<< (std::ostream& os, const DoSomething& obj) {
+        os
+            << "var1: " << obj.m_var1
+            << ", var2: " << obj.m_var2
+            << ", var3: " << obj.m_var3;
+
+        return os;
+    }
+
+    template <typename T, typename ... TArgs>
+    std::unique_ptr<T> my_make_unique(TArgs ... args) {
+
+        std::unique_ptr<T> ptr { new T{ args ... } };
+        return ptr;
+    }
+
+    void test_seminar_my_make_unique() {
+
+     //   std::unique_ptr<DoSomething> ptr = std::make_unique<DoSomething>(1, 2, 3);
+
+        std::unique_ptr<DoSomething> ptr2 = my_make_unique<DoSomething>(1, 2, 3);
+
+        std::unique_ptr<DoSomething> ptr3 = my_make_unique<DoSomething>(1, 2);
+    }
+
+    void test_seminar() {
+
+        std::vector<DoSomething> vec;
+
+       // vec.push_back(DoSomething(1, 2));
+
+        vec.emplace_back(1, 2, 3);
+
+    }
+}
+
+
 namespace VariadicTemplatesIntro_01 {
 
     // ====================================================================
@@ -352,6 +458,13 @@ namespace VariadicTemplatesIntro_06 {
 
 void main_variadic_templates_introduction()
 {
+    VariadicTemplatesIntro_Seminar::test_seminar();
+
+    return;
+
+
+
+
     VariadicTemplatesIntro_01::test_printer_01();
 
     VariadicTemplatesIntro_02::test_my_make_unique();

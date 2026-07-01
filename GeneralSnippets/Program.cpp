@@ -22,11 +22,6 @@ int main()
     //extern int _main_modules();
     //_main_modules();
 
-    // printValue(123);
-
-    main_seminar_zeichenketten();
-    return 0;
-
     std::println(MessageText);
 
     // main entry points code snippets
@@ -116,7 +111,7 @@ int main()
         //main_type_erasure();
         //main_type_traits();
         //main_unique_ptr();
-        //main_variadic_templates_introduction();
+        main_variadic_templates_introduction();
         //main_variadic_templates_working_on_every_argument();
         //main_variadic_templates_sum_of_sums();
         //main_variadic_templates_mixins();

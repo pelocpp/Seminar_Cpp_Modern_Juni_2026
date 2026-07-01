@@ -9,5 +9,58 @@ static void sayHello(/*const*/ std::string & message)
 
         std::unordered_map<int, std::string> anotherMap{ { 1, "Hello"  } };
 
+   BESSER kein std::map ...
+
 ===
+
+struct FuncionTwice    Tippfehler ...
+
+===
+
+.Zur Steigerung der Effizienz belegt   Tippfehler  der Punkt am Anfang ….
+
+===
+
+Lesbarkeit: In den Marketing Folien:   da fehlen Literale
+
+===
+
+Online C++ Compiler
+Zurück
+
+Allgemeines
+
+Da fehlt Inhalt :   3 IDEs
+
+=====
+
+
+    void test_seminar() {
+
+        std::unique_ptr<int> ptr = std::make_unique<int>(123);
+    }
+
+Geht das auch mit shared
+
+====
+
+        DoSomething() : m_var1{}, m_var2{}, m_var3{} {
+            std::cout << "c'tor()" << std::endl;   KEIN   std::cout
+        }
+
+std::println …….
+
+====
+
+
+        ~DoSomething()  {
+            std::cout << "d'tor()" << std::endl;
+        }
+
+
+Destruktor hinzufügen ……………...
+
+===
+
+
 
