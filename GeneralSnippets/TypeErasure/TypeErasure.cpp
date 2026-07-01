@@ -285,6 +285,7 @@ namespace BookStoreUsingDynamicPolymorphism {
     {
     private:
         using Stock = std::vector<std::shared_ptr<IMedia>>;
+
         using StockList = std::initializer_list<std::shared_ptr<IMedia>>;
 
         Stock m_stock;
@@ -331,9 +332,11 @@ namespace BookStoreUsingDynamicPolymorphism {
         std::shared_ptr<IMedia> movieTarantino{ std::make_shared<Movie>("Once upon a time in Hollywood", "Quentin Tarantino", 6.99, 3) };
         std::shared_ptr<IMedia> movieBond{ std::make_shared<Movie>("Spectre", "Sam Mendes", 8.99, 6) };
 
-        Bookstore bookstore{
-            cBook, movieBond, javaBook, cppBook, csharpBook, movieTarantino
+        Bookstore bookstore {
+            { cBook, movieBond, javaBook, cppBook, csharpBook, movieTarantino }
         };
+
+
 
         double balance{ bookstore.totalBalance() };
         std::println("Total value of Bookstore: {:.{}f}", balance, 2);
@@ -454,13 +457,18 @@ namespace BookStoreUsingTypeErasure {
         { m.getCount() } -> std::same_as<std::size_t>;
     };
 
+
+
+
     template <typename ... TMedia>
-        requires (MediaConcept<TMedia> && ...)
+        requires (MediaConcept<TMedia> && ...)  // Folding
     class Bookstore
     {
     private:
         using StockType = std::variant<TMedia ...>;
+
         using Stock     = std::vector<StockType>;
+
         using StockList = std::initializer_list<StockType>;
 
         Stock m_stock;
@@ -579,7 +587,7 @@ namespace BookStoreUsingTypeErasure {
         using MyBookstore = Bookstore<Book, Movie>;
 
         MyBookstore bookstore{
-            cBook, movieBond, javaBook, cppBook, csharpBook, movieTarantino
+            { cBook, movieBond, javaBook, cppBook, csharpBook, movieTarantino }
         };
 
         double balance{ bookstore.totalBalance() };

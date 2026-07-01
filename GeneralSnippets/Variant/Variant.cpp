@@ -251,8 +251,14 @@ namespace VariantDemo {
 
     static void test_07() {
 
+
+        // std::vector <T>:   Vektor ist ein  homogener Container
+
         std::vector<std::variant<int, long, long long, float, double>>
             vec = { 100, 200l, 300ll, 400.5f, 500.5 };
+
+
+
 
         // display each value
         std::println("Values:      ");

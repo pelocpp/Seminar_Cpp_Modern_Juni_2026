@@ -694,3 +694,50 @@ Reflection  //  C++ 26
 Metaprogramming
 
 Übersetzungszeit
+
+==========================================================================
+
+Vergleich:
+----------
+
+Konzeption von Software
+
+Polymorphismus: dynamisch
+
+"Polymorphismus": statisch
+
+
+
+== Classic C++: Vererbung, virtual, override ....
+
+== Modern C++:  Alternative Vorgehensweisen
+
+===> Pro- / Contra-Betrachtung:
+
+Classic C++:  
+
+Contra A: virtual kritisiert: INDIREKTER AUFRUF
+
+Contra B: Klassen von einem Zulieferer:  ClassExtern : public IMedia
+
+            for (const auto& media : m_stock) {
+                total += media->getPrice() * media->getCount();
+            }
+
+            vs,
+
+            [&](const auto& element) {
+                price = element.getPrice();
+                count = element.getCount();
+            },
+
+
+
+Beispiel:   Buchhandlung
+
+Wo ist dieses Beispiel : Type Erasure, ab Zeile 230.
+
+std::any<>, std::function<>, std::variant<>
+
+
+==========================================================================

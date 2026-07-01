@@ -15,8 +15,10 @@ namespace KeywordExplicit {
         // c'tors
         Complex() : Complex {0.0, 0.0}{}
 
-        /* explicit */ Complex(double real) :   // remove or add keyword 'explicit'
-            m_real{ real }, m_imag{} {}
+        explicit  Complex(double real) :   // remove or add keyword 'explicit'
+            m_real{ real }, m_imag{} 
+        {
+        }
 
         Complex(double real, double imag) :
             m_real{ real }, m_imag{ imag } {}
@@ -36,7 +38,7 @@ void main_explicit_keyword()
     // a Complex object
     Complex c{ 3.0, 0.0 };
     
-    if (c == 3.0)  // remove or add cast '(Complex)'
+    if (c == static_cast<Complex> ( 3.0) )  // remove or add cast '(Complex)'
     {
         std::cout << "Same objects" << std::endl;
     }

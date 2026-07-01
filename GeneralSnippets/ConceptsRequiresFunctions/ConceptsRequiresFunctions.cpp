@@ -15,11 +15,14 @@ concept NumericalEx = std::is_integral<T>::value or std::is_floating_point<T>::v
 namespace Requires_Clause {
 
     template <typename T>
-        requires Numerical<T>
+        requires NumericalEx<T>
     auto add(T a, T b)
     {
         return a + b;
     }
+
+
+
 
     // "inlining" constraints on template parameter types
     template <typename T>
@@ -48,7 +51,7 @@ namespace Requires_Clause {
         //    the concept 'Numerical<std::string>' evaluated to false
         //    the concept 'std::floating_point<std::string>' evaluated to false
         //    the concept 'std::integral<std::string>' evaluated to false
-        // auto sum4 = add(std::string { "ABC" }, std::string { "DEF" });
+       // auto sum4 = add(std::string { "ABC" }, std::string { "DEF" });
     }
 
     // ---------------------------------------------------------------------------------
