@@ -873,3 +873,89 @@ A) Für einfache Operationen:   ++, ++, Lesen, Schreiben:
     SONDER über den Umweg eines Hüllenobjekts.
 
     Konkret:  std::lock_guard
+
+=============================================================
+
+I)  Konkurrenz
+
+II) Kooperation 
+
+  Thread A: Berechnet / Produziert Daten ...
+
+  Thread B: Möchte auf diesen Daten arbeiten / wartet
+
+a) Semaphore
+
+b) Bedingungsvariable // Condition Variable
+
+15:40:   "Last Example"   // Nachtrichtenwarteschlange // All-In
+
+16.40:
+
+=============================================================
+
+Mini-Topic:
+
+Semaphore versus Mutex
+
+Mutex m_mutex:
+
+m_mutex.lock();
+m_mutex.unlock();
+
+Mehrere Male in versch. Threads.
+
+Ein Pärchen wird im selben Thread platziert / ausgeführt.
+
+
+Semaphore m_sema;   // Flagge // Ampel:  Gehisst oder unten.
+
+Mehrere Male in versch. Threads.
+
+m_sema.acquire();   
+m_sema.release();
+
+Ein Pärchen kann in verschiedenen Threads platziert / ausgeführt werden.
+
+
+===========================================================================
+
+Threads:
+
+std::thread   ===========> Windows: Win32 CreateThread
+
+Beispiel:
+
+Web-Server:
+----------
+
+RESTful Server:
+---------------
+
+a) Können VIELE Requests kommen
+b) Will deshalb aber nicht blockieren
+c) Tue jeden Request in einem sep. (client-spezifischen) Thread abarbeiten.
+
+Aussage: Mit Win32 CreateThread funktioniert das nicht.
+
+Threading:   Thread Pools.  
+
+C++:  std::async und std::future
+
+==================================================================
+
+Multithreading:   All-In
+
+Ereigniswarteschlange:   
+
+Queue:  a) Daten   
+        b) Daten + Funktion
+
+Mutex:  Zwangsserialisierung // lock / unlock
+
+         ==> Performanz
+
+ Ereigniswarteschlange:  Aufträge einstellen // die Queue muss geschüzt sein.
+
+        Ausführung: Ereigniswarteschlange: Der Reihe nach.  // nacheinander ausgeführt // KEIN  lock / unlock
+
