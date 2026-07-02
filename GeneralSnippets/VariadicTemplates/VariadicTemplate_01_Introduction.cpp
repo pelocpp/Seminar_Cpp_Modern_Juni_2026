@@ -104,13 +104,20 @@ namespace VariadicTemplatesIntro_Seminar {
         return ptr;
     }
 
+    template <typename T, typename ... TArgs>
+    std::unique_ptr<T> my_make_unique_perfect(TArgs&& ... args) {
+
+        std::unique_ptr<T> ptr{ new T{ std::forward<TArgs>(args) ... } };
+        return ptr;
+    }
+
     void test_seminar_my_make_unique() {
 
      //   std::unique_ptr<DoSomething> ptr = std::make_unique<DoSomething>(1, 2, 3);
 
         std::unique_ptr<DoSomething> ptr2 = my_make_unique<DoSomething>(1, 2, 3);
 
-        std::unique_ptr<DoSomething> ptr3 = my_make_unique<DoSomething>(1, 2);
+        std::unique_ptr<DoSomething> ptr3 = my_make_unique_perfect<DoSomething>(1, 2);
     }
 
     void test_seminar() {

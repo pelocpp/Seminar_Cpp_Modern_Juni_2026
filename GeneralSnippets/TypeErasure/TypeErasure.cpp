@@ -461,7 +461,9 @@ namespace BookStoreUsingTypeErasure {
 
 
     template <typename ... TMedia>
+        
         requires (MediaConcept<TMedia> && ...)  // Folding
+    
     class Bookstore
     {
     private:

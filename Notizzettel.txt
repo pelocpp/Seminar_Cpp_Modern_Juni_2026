@@ -8,7 +8,20 @@ Guten Morgen
 
 ====================================================
 
+peter.loos@gmx.de
+-----------------
+
+
+
+====================================================
+
 Github:  https://github.com/pelocpp/cpp_modern
+
+====================================================
+
+== Verabschiedung
+== Folding
+
 
 ====================================================
 
@@ -739,5 +752,22 @@ Wo ist dieses Beispiel : Type Erasure, ab Zeile 230.
 
 std::any<>, std::function<>, std::variant<>
 
-
 ==========================================================================
+
+Folding:
+--------
+
+Optimierungstechnik
+
+n1 + n2 + n3 + n4 + n5 + n6 + n7
+
+2 Schritte:
+
+a) Eine bel. Menge von Variablen zusammenstellen: Parameter Pack
+
+b) Anwendung des Folding-Ausdrucks
+
+=====================================
+
+
+Lösung bestimmter Probleme:  , Komma-Operator:  Sequenz-Operator

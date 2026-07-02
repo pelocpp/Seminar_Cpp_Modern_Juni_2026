@@ -536,10 +536,10 @@ auto createTask(TArgs&&... args) {
         // helper function
         auto process = [](auto& arg) {
             std::println("{}", arg);
-            };
+        };
 
         // folding over a comma: process all arguments
-        (process(args), ...);
+        ( process(args) , ... );
     };
 }
 

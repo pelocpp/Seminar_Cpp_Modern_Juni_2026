@@ -59,7 +59,7 @@ int main()
         //main_exception_safety();
        // main_expected();
        // main_explicit_keyword();
-        //main_folding();
+       // main_folding();
         //main_functional_programming();
         //main_functional_programming_legacy();
         //main_functional_programming_alternate();
@@ -79,7 +79,7 @@ int main()
         //main_modules();
        // main_move_semantics();
       //  main_optional();
-        //main_perfect_forwarding();
+       // main_perfect_forwarding();
         //main_placement_new();
         //main_println();
         //main_raii();
@@ -108,10 +108,10 @@ int main()
         //main_transform();
       //  main_tuple(); 
         //main_two_phase_name_lookup();
-      main_type_erasure();
+    //  main_type_erasure();
      //   main_type_traits();
         //main_unique_ptr();
-      //  main_variadic_templates_introduction();
+        main_variadic_templates_introduction();
         //main_variadic_templates_working_on_every_argument();
         //main_variadic_templates_sum_of_sums();
         //main_variadic_templates_mixins();

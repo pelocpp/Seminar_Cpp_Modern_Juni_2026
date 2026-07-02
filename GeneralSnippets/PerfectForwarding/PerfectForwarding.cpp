@@ -53,9 +53,9 @@ namespace PerfectForwarding {
     {
         // Beobachte den Inhalt der beiden Parameter 'arg1' und 'arg2'
 
-        // T obj1 = std::forward<T>(arg1);
+        T obj1 = std::forward<T>(arg1);
         // vs
-        T obj1 = arg1;
+        // T obj1 = arg1;
         std::println("[{}]", arg1);
 
         U obj2 = std::forward<U>(arg2);
@@ -66,7 +66,7 @@ namespace PerfectForwarding {
     {
         std::string s{ "DEF" };
 
-        foo(std::string{ "ABC" }, s);
+        foo( std::string{ "ABC" }, s);
     }
 }
 

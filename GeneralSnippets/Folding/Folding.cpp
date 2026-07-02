@@ -8,6 +8,62 @@ module;
 
 module modern_cpp:folding;
 
+
+namespace Folding_Seminar {
+
+    auto addierer(auto ... args)
+    {
+        // a + b + c + d + ....  : mit Folding Ausdruck
+        auto result =  (...  + args ) ;
+
+        return result;
+    }
+
+    auto subtrahierer (auto ... args)
+    {
+        // a - b - c - d + ....  : mit Folding Ausdruck
+        
+       //  (1 - 2) - 3 = -4    Üblichen Reihenfolge
+       //   1 - (2 - 3) = +2
+
+        auto result = (args  - ...);
+
+        return result;
+    }
+
+
+    void helper(auto var)
+    {
+        std::cout << " - " << var;
+    }
+
+    void printer(auto first, /*auto second, */ auto ... args)
+    {
+        // std::cout << args1 << args2 << args3 << ....  : Binary Folding Ausdruck
+
+        // (std::cout << ... << args);
+
+        std::cout << first;
+
+        (... ,  helper (args) );
+    }
+
+    void test_folding() {
+
+        auto ergebnis1 = addierer(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        auto ergebnis2 = subtrahierer(1, 2, 3);
+
+        printer(999, 123.123 , '!', "ABCDE", std::string{"XYZ"}, '.');
+
+        std::cout << std::endl;
+    }
+
+}
+
+
+
+
 namespace Folding {
 
     /* folding examples: introduction
@@ -234,6 +290,9 @@ namespace Folding {
 
 void main_folding()
 {
+    Folding_Seminar::test_folding();
+    return;
+
     using namespace Folding;
 
     test_01();
