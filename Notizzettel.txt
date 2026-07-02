@@ -769,5 +769,107 @@ b) Anwendung des Folding-Ausdrucks
 
 =====================================
 
-
 Lösung bestimmter Probleme:  , Komma-Operator:  Sequenz-Operator
+
+=====================================
+=====================================
+
+Multi-Threading:
+
+a) Unterlagerten Betriebssystem
+
+b) Kleinsten gemeinsamen Nenner: Nach / in C++ hochzuziehen.
+
+   Abstraktion: Am Anfang (C++) etwas klein ausgefallen
+   C++ 20:   Umfangreicher ...
+
+
+i) Thread
+
+============================================
+
+a) Eine Variable
+
+
+b) 2 Threads, die auf dieselbe Variable zugreifen
+
+Beispiel:
+
+a) Eine Variable: Mit 0 vorbelegen.
+
+b) Diese Variable: 1000 mal hochzählen.        // im ersten Thread
+
+c) Diese Variable: 1000 mal runter zählen.     // im zweiten Thread
+
+d) Welcher Wert steht danach drin: 0
+
+Problem:
+
+                ++m_counter;
+00007FF7B10B2C33  mov         rax,qword ptr [this]     Lesen // Read
+00007FF7B10B2C3A  mov         eax,dword ptr [rax]  
+
+00007FF7B10B2C3C  inc         eax                      Inkrementieren
+
+// ========> Thread Wechsel
+
+00007FF7B10B2C3E  mov         rcx,qword ptr [this]     Schreiben // Write
+00007FF7B10B2C45  mov         dword ptr [rcx],eax  
+
+Thread Wechsel: Was passiert da ??? 
+
+i) Es werden ALLE Register zwischengespeichert
+ii) Wo:  Auf dem aktuellen Stack
+iii) Jeder Thread besitzt einen zugehörigen , exklusiven Stack
+iv) Es werden für den neuen Thread die Register des neuen Threads restauriet
+
+Beispiel:   eax: 99   // 98, 97, 96, 95 (m_counter)
+
+Was passiert, wenn der alte Thread wieder dran kommt: Es weden DESSEN Register
+                wieder hergestellt: eax = 99
+
+                 Die anderen Werte gehen in der Berechnung verloren.
+
+
+Lösung:
+
+A) Für einfache Operationen:   ++, ++, Lesen, Schreiben:
+
+   Spezielle Variablen  // Klassen in C++
+
+
+   std::atomic<long>:  Funktioniert ????????????????  
+                       Interrupt Sperre // Adress - Bussperre
+
+
+    Nächstes Problem:
+
+    Ich habe 2 oder mehrere Anweisungen (push, pop, push_back ),
+    die nicht unterbrochen werden dürfen.
+
+    std::mutex:    Mutual  Exclusion // Gegenseitiger Ausschluss
+
+    std::mutex m;
+
+    lock();
+
+    unlock();
+
+    // ===========================================================
+
+    In C++:            RAII  - Resource Aquisition is Initialization
+
+                               Scope Bound Resource Management
+
+    C++ Konzept:
+
+    Idee: Seeeeeeeeeeeeeeeeeeeeeeeeeeeehr ähnlich mit einem Unique Pointer:
+
+          Konstruktor:  new      // lock()
+          Destruktor:   delete   // unlock()
+
+    Hüllenklasse: Wir verwenden das Mutex Objekt NICHT DIREKT // EXPLIZIT
+
+    SONDER über den Umweg eines Hüllenobjekts.
+
+    Konkret:  std::lock_guard
